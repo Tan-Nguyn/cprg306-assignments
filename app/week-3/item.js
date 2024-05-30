@@ -1,11 +1,10 @@
 
 
 export default function Item({ item }) {
-  const { name, quantity, category } = item;
-
   return (
-    <li className="p-2 border-b border-gray-200">
-      <span className="font-semibold">{name}</span> - {quantity} ({category})
+    <li className="p-4 mb-2 bg-gray-800 text-white rounded shadow">
+      <div className="text-lg font-semibold">{item.name}</div>
+      <div className="text-sm">Buy {item.quantity} in {item.category}</div>
     </li>
   );
 }
