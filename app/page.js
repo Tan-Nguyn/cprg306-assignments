@@ -5,7 +5,13 @@ export default function Home() {
   return (
     <main className="h-screen">
     <h1 className="text-xl font-bold">CPRG 306: Web Development 2 - Assignments</h1>
-    <Link className = {linkStyles} href="./week-2">Page 2</Link>
+    <ul>
+      <li><Link className = {linkStyles} href="./week-2">Page 2</Link></li>
+      <li><Link className = {linkStyles} href="./week-4/functions">Week 4 - Functions</Link></li>
+      <li><Link className = {linkStyles} href="./week-4/counter">Week 4 - Counter</Link></li>
+      <li><Link className = {linkStyles} href="./week-4/managed_form">Week 4 - Form</Link></li>
+
+    </ul>
   </main>
   );
 }
