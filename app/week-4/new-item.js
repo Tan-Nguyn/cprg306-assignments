@@ -60,7 +60,7 @@ export default function NewItem() {
       </div>
 
       <button type="submit" className="w-full py-2 text-lg font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
-        +
+        Add Items
       </button>
     </form>
   );
