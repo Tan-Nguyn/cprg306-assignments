@@ -3,6 +3,8 @@
 import Link from "next/link";
 // Import the useUserAuth hook
 import { useUserAuth } from "./_utils/auth-context";
+import { useEffect } from "react";
+import { dbGetAllPosts } from "./_services/blog-service";
 
 export default function SignInPage(){
     //calls custom hook
@@ -25,6 +27,12 @@ export default function SignInPage(){
         }
     }
 
+    const [blogPostList, setBlogPostList] = useState([]);
+    useEffect( () => {
+        if(user){
+            dbGetAllPosts(user.uid, setBlogPostList); 
+        }
+    }, [user]);
     //console.dir(user);
 
     //"{user ? () : () }" single line if statement essentially (if user exists "user ?"" then "()" if not (:), then the second "()")
@@ -46,6 +54,18 @@ export default function SignInPage(){
                         <Link href="/week9/add-blog-post/">Add a New Blog Post</Link>
                     </p>
                     <button onClick={handleSignOut} className="text-lg m-2 hover:underline">Sign Out</button>
+                    <section>
+                        <h2>My Blog post</h2>
+                        <ul>
+                            {
+                                blogPostList.map((post) => {
+                                    let postUrl = '/week10/${post.id}' ;
+                                    return <li key = {post.id}><Link href={postUrl}>{post.title}</Link></li>
+
+                                })
+                            }
+                        </ul>
+                    </section>
                 </div>
             ) : (
                 //user IS NOT logged in
