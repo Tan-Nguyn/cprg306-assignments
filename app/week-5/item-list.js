@@ -10,9 +10,16 @@ export default function ItemList() {
   const [itemsData, setItemsData] = useState([]);
 
   useEffect(() => {
-    fetch('/app/week-5/items.json')
-      .then(response => response.json())
-      .then(data => setItemsData(data))
+    fetch('/week-5/items.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setItemsData(data);
+      })
       .catch(error => console.error('Error fetching items:', error));
   }, []);
 
