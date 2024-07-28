@@ -17,7 +17,7 @@ export default function NewItem({ onAddItem }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-2 bg-gray-800 p-4 rounded-md shadow-md w-full">
+    <form onSubmit={handleSubmit} className="flex flex-col space-y-2 bg-gray-800 p-4 rounded-md shadow-md w-full">
       <div className="w-full">
         <input
           type="text"
