@@ -1,5 +1,3 @@
-// /app/week-5/item-list.js
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -10,7 +8,7 @@ export default function ItemList() {
   const [itemsData, setItemsData] = useState([]);
 
   useEffect(() => {
-    fetch('/week-5/items.json')
+    fetch('/items.json')  // Updated path to match the public directory
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -18,10 +16,16 @@ export default function ItemList() {
         return response.json();
       })
       .then(data => {
+        console.log('Fetched data:', data); // Debugging log
         setItemsData(data);
       })
       .catch(error => console.error('Error fetching items:', error));
   }, []);
+  
+
+  if (itemsData.length === 0) {
+    return <div className="text-white">Loading...</div>;
+  }
 
   const sortedItems = [...itemsData].sort((a, b) => {
     if (sortBy === 'name') {
@@ -29,6 +33,7 @@ export default function ItemList() {
     } else if (sortBy === 'category') {
       return a.category.localeCompare(b.category);
     }
+    return 0;
   });
 
   const groupedItems = itemsData.reduce((acc, item) => {
