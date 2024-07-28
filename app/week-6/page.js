@@ -1,39 +1,24 @@
-"use client"
+'use client';
 
-import DogForm from './dog-form';
-import DogList from './dog-list';
-import DogData from './dogs.json';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import NewItem from './new-item';
+import ItemList from './item-list';
+import itemsData from './items.json';
 
-export default function DogPage() {
-    const [dogList, setDogList] = useState(
-        DogData.map( (dog) => ({...dog}))
-    );
+export default function Page() {
+  const [items, setItems] = useState(itemsData);
 
-    const handleCreateDog = (newDog) =>{
+  const handleAddItem = (item) => {
+    setItems([...items, item]);
+  };
 
-        setDogList( [...dogList, newDog]);
-    } 
-
-
-
-    const [isDogFormOpen, setDogFormOpen] = useState(false);
-    const openDogForm = () => setDogFormOpen(true);
-    const closeDogForm = () => setDogFormOpen(false);
-
-    return (
-        <main>
-            {isDogFormOpen && (
-                <DogForm closeFormFunc={closeDogForm} onCreateDog={handleCreateDog}/>
-            )}
-
-            <h1 className='text-3xl font-bold text-center'>Dogs for Adoption</h1>
-            <DogList listOfDogs={dogList} />
-            <div className="text-center mt-5">
-                <button onClick={openDogForm} className="py-2 px-4 rounded-sm bg-blue-600 hover:bg-blue-500 text-white">
-                    Add Dog
-                </button>
-            </div>
-        </main>
-    );
+  return (
+    <main className="p-4 bg-gray-900 min-h-screen flex flex-col items-center">
+      <h1 className="text-3xl font-bold text-white mb-6">Shopping List</h1>
+      <div className="w-full max-w-md">
+        <NewItem onAddItem={handleAddItem} />
+        <ItemList items={items} />
+      </div>
+    </main>
+  );
 }
