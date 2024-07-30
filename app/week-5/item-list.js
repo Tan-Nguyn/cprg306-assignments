@@ -8,7 +8,7 @@ export default function ItemList() {
   const [itemsData, setItemsData] = useState([]);
 
   useEffect(() => {
-    fetch('/items.json')  // Updated path to match the public directory
+    fetch('/items.json')  
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

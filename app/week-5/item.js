@@ -1,4 +1,4 @@
-// /app/week-5/item.js
+
 
 export default function Item({ item }) {
   return (

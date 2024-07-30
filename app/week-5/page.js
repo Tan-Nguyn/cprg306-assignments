@@ -1,5 +1,3 @@
-// /app/week-5/page.js
-
 'use client';
 
 import ItemList from './item-list';
